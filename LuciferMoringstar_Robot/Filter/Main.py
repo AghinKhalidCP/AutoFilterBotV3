@@ -63,50 +63,52 @@ async def filter(client, message):
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"pr0fess0r_99#{file_id}")]
                     )
         else:
-            await client.send_sticker(chat_id=message.from_user.id, sticker='CAADBQADMwIAAtbcmFelnLaGAZhgBwI')
-            return
+            Send_message = await bot.send_photo( chat_id=update.chat.id,
+            photo="https://telegra.ph/file/c81581b278d29b2bd37f8.jpg",
+            caption="<b>I Couldn't Find :(\nSearch Correctly in Google.com & Paste Here🙂</b>", reply_to_message_id=update.message_id )
 
-        if not btn:
-            return
+            await asyncio.sleep(5) await Send_message.delete()
+                    if not btn:
+                        return
 
-        if len(btn) > 10: 
-            btns = list(split_list(btn, 10)) 
-            keyword = f"{message.chat.id}-{message.message_id}"
-            BUTTONS[keyword] = {
-                "total" : len(btns),
-                "buttons" : btns
-            }
-        else:
-            buttons = btn
-            buttons.append(
-                [InlineKeyboardButton(text="📃 Pages 1/1",callback_data="pages")]
-            )
-            poster=None
-            if API_KEY:
-                poster=await get_poster(search)
-            if poster:
-                await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
+                    if len(btn) > 10:
+                        btns = list(split_list(btn, 10))
+                        keyword = f"{message.chat.id}-{message.message_id}"
+                        BUTTONS[keyword] = {
+                            "total" : len(btns),
+                            "buttons" : btns
+                        }
+                    else:
+                        buttons = btn
+                        buttons.append(
+                            [InlineKeyboardButton(text="📃 Pages 1/1",callback_data="pages")]
+                        )
+                        poster=None
+                        if API_KEY:
+                            poster=await get_poster(search)
+                        if poster:
+                            await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
 
-            else:
-                await message.reply_text(mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
-            return
+                        else:
+                            await message.reply_text(mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
+                        return
 
-        data = BUTTONS[keyword]
-        buttons = data['buttons'][0].copy()
+                    data = BUTTONS[keyword]
+                    buttons = data['buttons'][0].copy()
 
-        buttons.append(
-            [InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_0_{keyword}")]
-        )    
-        buttons.append(
-            [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
-        )
-        poster=None
-        if API_KEY:
-            poster=await get_poster(search)
-        if poster:
-            await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
-        else:
-            await message.reply_text(mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
+                    buttons.append(
+                        [InlineKeyboardButton(text="NEXT ⏩",callback_data=f"next_0_{keyword}")]
+                    )
+                    buttons.append(
+                        [InlineKeyboardButton(text=f"📃 Pages 1/{data['total']}",callback_data="pages")]
+                    )
+                    poster=None
+                    if API_KEY:
+                        poster=await get_poster(search)
+                    if poster:
+                        await message.reply_photo(photo=poster, caption=mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
+                    else:
+                        await message.reply_text(mo_tech_yt, reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
 async def group(client, message):

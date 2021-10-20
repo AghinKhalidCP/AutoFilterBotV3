@@ -64,7 +64,7 @@ async def filter(client, message):
                     )
         else:
             await client.send_message(
-        chat_id=update.chat.id,
+        chat_id=message.from_user.id,
         text=f"<b>Sorry I couldn't find anything for <code>{the_query}</code> 🤧\nSearch in Google.com for Correct Spelling\nDon't Forget to check the instructions below</b> 👇🏽",
         reply_markup=reply_markup,
         parse_mode="html",

@@ -63,7 +63,7 @@ async def filter(client, message):
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"pr0fess0r_99#{file_id}")]
                     )
         else:
-            await client.send_message(chat_id=message.from_user.id, text=f"<b>Sorry I couldn't find anything for <code>{the_query}</code>)
+            await client.send_message(chat_id=message.from_user.id, text=f"<b>Sorry I couldn't find anything for <code>{the_query}</code>)",
             return
 
         if not btn:

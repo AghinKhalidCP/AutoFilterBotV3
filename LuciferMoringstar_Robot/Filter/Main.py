@@ -63,8 +63,13 @@ async def filter(client, message):
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"pr0fess0r_99#{file_id}")]
                     )
         else:
-            await client.send_sticker(chat_id=message.from_user.id, sticker='CAACAgEAAxkBAAFZTaphb4kXK0kUsw9V9LifJM2Xmi_upAACTAIAAj4ReUfSPX2A9w_sASEE')
-            return
+            await bot.send_message(
+        chat_id=update.chat.id,
+        text=f"<b>Sorry I couldn't find anything for <code>{the_query}</code> 🤧\nSearch in Google.com for Correct Spelling\nDon't Forget to check the instructions below</b> 👇🏽",
+        reply_markup=reply_markup,
+        parse_mode="html",
+        reply_to_message_id=update.message_id)
+        return
 
         if not btn:
             return

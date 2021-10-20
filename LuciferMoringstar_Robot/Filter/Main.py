@@ -66,7 +66,7 @@ async def filter(client, message):
             await client.send_message(
         chat_id=message.from_user.id,
         text=f"<b>Sorry I couldn't find anything for <code>{search}</code> 🤧\nSearch in Google.com for Correct Spelling\nDon't Forget to check the instructions below</b> 👇🏽",
-        parse_mode="html",
+        parse_mode="html") 
         return
 
         if not btn:

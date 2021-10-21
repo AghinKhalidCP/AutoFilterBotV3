@@ -64,7 +64,7 @@ async def filter(client, message):
                     )
         else:
           Send_message = await client.send_photo( 
-              chat_id=update.chat.id,
+              chat_id=message.chat.id,
               photo="https://telegra.ph/file/eabeaf432b58f129ea2b4.jpg",
               caption="<b>Couldn't Find This Movie.Try Again..! ഈ സിനിമയുടെ ഒറിജിനൽ പേര് ഗൂഗിളിൽ പോയി കണ്ടെത്തി അതുപോലെ ഇവിടെ കൊടുക്കുക 🥺</b>",
               reply_to_message_id=message_id 

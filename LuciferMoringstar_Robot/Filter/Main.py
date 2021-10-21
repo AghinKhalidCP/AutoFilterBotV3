@@ -63,9 +63,14 @@ async def filter(client, message):
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"pr0fess0r_99#{file_id}")]
                     )
         else:
-            await client.send_message(chat_id=message.from_user.id, text=f"Sorry I couldn't find anything for <code>{search}</code>\n•<a href="https://www.google.com/search">Click Here</a> and Check Whether the Spelling is Correct"
-            parse_mode="html") 
-            return
+          Send_message = await client.send_photo( 
+              chat_id=update.chat.id,
+              photo="https://telegra.ph/file/eabeaf432b58f129ea2b4.jpg",
+              caption="<b>Couldn't Find This Movie.Try Again..! ഈ സിനിമയുടെ ഒറിജിനൽ പേര് ഗൂഗിളിൽ പോയി കണ്ടെത്തി അതുപോലെ ഇവിടെ കൊടുക്കുക 🥺</b>",
+              reply_to_message_id=update.message_id 
+          ) 
+          await asyncio.sleep(5) 
+          await Send_message.delete()
 
         if not btn:
             return
